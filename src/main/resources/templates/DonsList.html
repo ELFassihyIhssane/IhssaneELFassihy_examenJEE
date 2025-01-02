@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Dons</title>
+    <style>
+        .warning { color: red; font-weight: bold; }
+        .normal { color: green; font-weight: normal; }
+    </style>
+</head>
+<body>
+<h1>Liste des Dons pour l'Action <span th:text="${action.titre}"></span></h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Montant (MAD)</th>
+        <th>Type</th>
+        <th>ID de l'Action</th>
+        <th>ID du Donateur</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="don : ${dons}">
+        <td th:text="${don.id}"></td>
+        <td th:text="${don.titre}"></td>
+        <td th:text="${don.montant}"></td>
+        <td th:text="${don.type}"></td>
+        <td th:text="${don.action_Id}"></td>
+        <td th:text="${don.donateur_Id}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<p><strong>Montant Total des Dons :</strong> <span th:text="${totalMontant}"></span> MAD</p>
+
+<p>
+    <strong>État de l'Action :</strong>
+    <span th:class="${totalMontant < action.montantObj} ? 'warning' : 'normal'"
+          th:text="${action.etat}"></span>
+</p>
+
+<a href="/">Retour à la page d'accueil</a>
+</body>
+</html>

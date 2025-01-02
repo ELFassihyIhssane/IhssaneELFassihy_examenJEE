@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter une Action</title>
+</head>
+<body>
+<h1>Ajouter une Nouvelle Action</h1>
+<form th:action="@{/save}" th:object="${actionDTO}" method="post">
+    <div>
+        <label for="titre">Titre :</label>
+        <input type="text" id="titre" th:field="*{titre}" placeholder="Titre de l'action" required />
+    </div>
+    <div>
+        <label for="description">Description :</label>
+        <textarea id="description" th:field="*{description}" placeholder="Description de l'action" required></textarea>
+    </div>
+    <div>
+        <label for="dateCreation">Date de Création :</label>
+        <input type="date" id="dateCreation" th:field="*{dateCreation}" required />
+    </div>
+    <div>
+        <label for="montantObj">Montant Objectif (MAD) :</label>
+        <input type="number" id="montantObj" th:field="*{montantObj}" placeholder="Montant Objectif" step="0.01" required />
+    </div>
+    <div>
+        <label for="etat">État :</label>
+        <select id="etat" th:field="*{etat}">
+            <option th:each="et : ${etat}" th:value="${et}" th:text="${et}"></option>
+        </select>
+    </div>
+    <div>
+        <label for="organisateur_Id">Organisateur (ID) :</label>
+        <input type="number" id="organisateur_Id" th:field="*{organisateur_Id}" placeholder="ID de l'organisateur" required />
+    </div>
+    <div>
+        <button type="submit">Ajouter</button>
+    </div>
+</form>
+</body>
+</html>
